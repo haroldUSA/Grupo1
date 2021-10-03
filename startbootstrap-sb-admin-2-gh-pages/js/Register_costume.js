@@ -20,7 +20,7 @@ $('#submitbtn').click(function (e) {
         console.log('success====:', response)
         clearfield();
         mensaje();
-        setTimeout("redireccionar()", 3000);
+        //setTimeout("redireccionar()", 3000);
     })
 
     function clearfield(){
