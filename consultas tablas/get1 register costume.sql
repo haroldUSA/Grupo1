@@ -1,0 +1,1 @@
+SELECT * from COSTUME where ID=:id;

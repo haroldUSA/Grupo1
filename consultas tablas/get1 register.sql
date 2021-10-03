@@ -1,0 +1,1 @@
+SELECT * from MESSAGE where ID=:id
