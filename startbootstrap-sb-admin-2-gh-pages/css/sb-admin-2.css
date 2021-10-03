@@ -10861,13 +10861,13 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background: url("https://i.blogs.es/de76d1/disfraces-diy-ninos/1024_682.jpeg");
   background-position: center;
   background-size: cover;
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+  background: url("https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2019/10/30/15724462329579.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -11278,4 +11278,12 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+.lool {
+  display: none;
+}
+
+input[type=checkbox]:checked ~ div.lool {
+  display:block;
 }
