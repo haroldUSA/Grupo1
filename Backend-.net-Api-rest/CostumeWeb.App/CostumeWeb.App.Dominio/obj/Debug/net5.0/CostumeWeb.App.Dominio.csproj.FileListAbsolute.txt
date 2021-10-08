@@ -1,0 +1,12 @@
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\bin\Debug\net5.0\CostumeWeb.App.Dominio.deps.json
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\bin\Debug\net5.0\CostumeWeb.App.Dominio.dll
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\bin\Debug\net5.0\ref\CostumeWeb.App.Dominio.dll
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\bin\Debug\net5.0\CostumeWeb.App.Dominio.pdb
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\CostumeWeb.App.Dominio.csproj.AssemblyReference.cache
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\CostumeWeb.App.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\CostumeWeb.App.Dominio.AssemblyInfoInputs.cache
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\CostumeWeb.App.Dominio.AssemblyInfo.cs
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\CostumeWeb.App.Dominio.csproj.CoreCompileInputs.cache
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\CostumeWeb.App.Dominio.dll
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\ref\CostumeWeb.App.Dominio.dll
+C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CostumeWeb.App\CostumeWeb.App.Dominio\obj\Debug\net5.0\CostumeWeb.App.Dominio.pdb

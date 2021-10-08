@@ -1,0 +1,9 @@
+CREATE TABLE costume (
+    ID NUMBER,
+    BRAND varchar2(45),
+    MODEL NUMBER,
+    CATEGORY_ID NUMBER,
+    NAME varchar2(45),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (CATEGORY_ID) REFERENCES category(ID)
+);

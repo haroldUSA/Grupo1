@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "CostumeWeb.App.Dominio/1.0.0": {
+        "runtime": {
+          "CostumeWeb.App.Dominio.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CostumeWeb.App.Dominio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
