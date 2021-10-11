@@ -12,7 +12,7 @@ $(document).ready(function (e) {
         $.each(data["items"],function(key,value){
          ID=value.id;   
         client_data+='<tr>';
-        client_data+='<td>'+value.id+'</td>';
+        //client_data+='<td>'+value.id+'</td>';
         client_data+='<td>'+value.brand+'</td>';
         client_data+='<td>'+value.model+'</td>';
         client_data+='<td>'+value.category_id+'</td>';

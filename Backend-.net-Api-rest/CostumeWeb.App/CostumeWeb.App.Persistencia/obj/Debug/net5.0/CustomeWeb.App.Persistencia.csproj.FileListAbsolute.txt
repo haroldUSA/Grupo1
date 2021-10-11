@@ -1,5 +1,0 @@
-C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CustomeWeb.App\CustomeWeb.App.Persistencia\obj\Debug\net5.0\CustomeWeb.App.Persistencia.csproj.AssemblyReference.cache
-C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CustomeWeb.App\CustomeWeb.App.Persistencia\obj\Debug\net5.0\CustomeWeb.App.Persistencia.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CustomeWeb.App\CustomeWeb.App.Persistencia\obj\Debug\net5.0\CustomeWeb.App.Persistencia.AssemblyInfoInputs.cache
-C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CustomeWeb.App\CustomeWeb.App.Persistencia\obj\Debug\net5.0\CustomeWeb.App.Persistencia.AssemblyInfo.cs
-C:\Users\harld\Documents\Grupo1\Backend-.net-Api-rest\CustomeWeb.App\CustomeWeb.App.Persistencia\obj\Debug\net5.0\CustomeWeb.App.Persistencia.csproj.CoreCompileInputs.cache

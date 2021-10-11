@@ -7,7 +7,7 @@ $('#submitbtn').click(function (e) {
     var age = $('#Age').val();
 
     $.post("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client", {
-        id: id,
+       // id: id,
         name: firstname + " " + secondname,
         email: email,
         age: age
@@ -18,7 +18,7 @@ $('#submitbtn').click(function (e) {
     })
 
     function clearfield() {
-        $("#ID").val("");
+     //   $("#ID").val("");
         $("#FirstName").val("");
         $("#LastName").val("");
         $("#InputEmail").val("");

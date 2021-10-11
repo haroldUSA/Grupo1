@@ -12,7 +12,7 @@ $(document).ready(function (e) {
         $.each(data["items"],function(key,value){
          ID=value.id;   
         client_data+='<tr>';
-        client_data+='<td>'+value.id+'</td>';
+       // client_data+='<td>'+value.id+'</td>';
         client_data+='<td>'+value.messagetext+'</td>';
         client_data+=`<td align="center"><button  style="background-color:#224abe"
         class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
