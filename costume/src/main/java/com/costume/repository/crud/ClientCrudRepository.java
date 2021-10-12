@@ -6,6 +6,7 @@
 package com.costume.repository.crud;
 
 import com.costume.model.Client;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author win10
  */
 public interface ClientCrudRepository extends CrudRepository<Client, Integer> {
+
+    public Optional<Client> findAllById(int id);
     
 }
