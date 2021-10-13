@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,12 +38,16 @@ public class Reservation implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "costumeId")
-    @JsonIgnoreProperties("reservations")
+    @JsonIgnoreProperties({"reservations","client"})
     private Costume costume;
     
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties("reservations")
+    @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
+    
+    @OneToOne
+    @JsonIgnoreProperties({"reservation"})
+    private Score score;
     
 }
