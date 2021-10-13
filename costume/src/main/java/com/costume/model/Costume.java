@@ -52,4 +52,9 @@ public class Costume implements Serializable{
     @OneToMany (cascade = {CascadeType.PERSIST}, mappedBy = "costume")
     @JsonIgnoreProperties("costume")
     private List <Message> messages;
+    
+    @OneToMany (cascade = {CascadeType.PERSIST}, mappedBy = "costume")
+    @JsonIgnoreProperties("costume")
+    private List <Reservation> reservations;
+    
 }
