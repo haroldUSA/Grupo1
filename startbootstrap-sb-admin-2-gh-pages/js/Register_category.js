@@ -1,28 +1,18 @@
 $('#submitbtn').click(function (e) {
     e.preventDefault()
-    var id = $('#ID').val();
-    var brand = $('#Brand').val();
-    var model = $('#Model').val();
-    var category_id = $('#Category_id').val();
-    var name = $('#Name').val();
-    console.log(brand);
-    console.log(model);
-    console.log(category_id);
-    console.log(name);
+    var Textarea = $('#Textarea1').val();
+    var Name = $('#Name').val();
 
     let datos={
-        id: id,
-        brand: brand,
-        model: model,
-        category_id: category_id,
-        name: name
+        name: Name ,
+        description: Textarea 
     }
 
     let datosPeticion = JSON.stringify(datos);
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Costume/save",
+        url: "http://129.151.111.220:8080/api/Category/save",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -61,20 +51,17 @@ $('#submitbtn').click(function (e) {
     });
 
     function clearfield(){
-      $("#ID").val("");
-      $("#Brand").val("");
-      $("#Model").val("");
-      $("#Category_id").val("");
-      $("#Name").val("");
+      $("#Textarea1").val(" ");
+
     }
 });
 
 
 function mensaje(){
-    alert("Disfraz registrado exitosamente!!")
+    alert("Categoria creada exitosamente!!")
 }
 
 function redireccionar() {
     console.log("entro");
-    location.href = "/register_message.html";;
+    location.href = "/table_category.html";;
 }
