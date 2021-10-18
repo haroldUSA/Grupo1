@@ -3,6 +3,7 @@ package com.costume.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Reservation implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "costumeId")
-    @JsonIgnoreProperties({"reservations","client"})
+    @JsonIgnoreProperties("reservations")
     private Costume costume;
     
     @ManyToOne
@@ -46,8 +47,8 @@ public class Reservation implements Serializable {
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
     
-    @OneToOne
-    @JsonIgnoreProperties({"reservation"})
+    @OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")
+    @JsonIgnoreProperties("reservation")
     private Score score;
     
 }
