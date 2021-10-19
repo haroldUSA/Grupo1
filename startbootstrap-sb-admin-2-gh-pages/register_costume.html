@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="https://haroldrs1302.000webhostapp.com/css/sb-admin-2.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+        rel="stylesheet" />
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -37,30 +40,61 @@
                                 <h1 class="h4 text-gray-900 mb-4">Create an Costume!</h1>
                             </div>
                             <form class="user" method="POST" id="form">
-                                
-                                  <!--  <div class="form-group col-sm-6 mb-3">
-                                    <input type="text" class="form-control form-control-user" id="ID"
-                                        placeholder="ID">
-                                     </div> -->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="Brand"
-                                            placeholder="Brand">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="Model"
-                                            placeholder="Model">
-                                    </div>                             
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="Category_id"
-                                            placeholder="Category id">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user"
-                                            id="Name" placeholder="Name">
-                                    </div>
-                                
-                                <button id="submitbtn" class="btn btn-primary btn-user btn-block"><i class="fas fa-file" style="color: white;"></i> Register Costume</button>
-                                 <!-- <input type="submit" class="btn btn-primary btn-user btn-block"> Register Account -->
+                                <div class="form-group col-sm-6 mb-3">
+                                    <input type="text" class="form-control form-control-user" id="IDCategory"
+                                        placeholder="Selected Category">
+                                </div>
+                                <div class="form-group col-sm-6 mb-3">
+                                    <input type="text" class="form-control form-control-user" id="IDnumber"
+                                        placeholder="Numbers">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="Brand"
+                                        placeholder="Brand">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="datepicker" placeholder="Year" onkeypress="return false;"/>
+                                    <!--<input type="email" class="form-control form-control-user" id="Year"
+                                        placeholder="Category id">-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="example"></label>
+                                    <textarea class="form-control" id="Textarea1" rows="3" placeholder="description"></textarea>
+                                 </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="Name"
+                                        placeholder="Name">
+                                </div>
+
+                                <div class="form-group">
+                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#">select a category where it belong! </a>
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item dropdown" id="barra">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Category
+                                                </a>
+                                                <div id="client"
+                                                    class="dropdown-menu dropdown-menu-right animated--grow-in"
+                                                    aria-labelledby="navbarDropdown">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <!-- <nav class="navbar navbar-expand navbar-light bg-light mb-4"> 
+                                    <a class="navbar-brand" href="#">select a category where it belong! </a>  
+                                    <select name="select" id="client" class="selectpicker" >
+                                    <option value="">
+                                        Category
+                                    </option>
+                                    </select>
+                                    </nav>-->
+                                </div>
+                                <button id="submitbtn" class="btn btn-primary btn-user btn-block"><i class="fas fa-file"
+                                        style="color: white;"></i> Register Costume</button>
+                                <!-- <input type="submit" class="btn btn-primary btn-user btn-block"> Register Account -->
                                 <hr>
                                 <a href="table_costumes.html" class="btn btn-google btn-user btn-block">
                                     <i class="fas fa-undo" style="color: white;"></i> Return to table Costumes
@@ -90,6 +124,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="https://haroldrs1302.000webhostapp.com/js/sb-admin-2.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+        rel="stylesheet" />
+
 
 </body>
 

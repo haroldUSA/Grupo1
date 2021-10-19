@@ -6,7 +6,7 @@ $(document).ready(function (e) {
 
 
 
-    $.getJSON("http://129.151.111.220:8080/api/Category/all", 
+    $.getJSON("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/message/message", 
     function (data) {
         var client_data="";
         $.each(data["items"],function(key,value){
