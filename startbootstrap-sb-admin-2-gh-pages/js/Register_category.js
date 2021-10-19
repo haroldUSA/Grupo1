@@ -36,7 +36,7 @@ $('#submitbtn').click(function (e) {
             $("#mensajes").html("Registro Agregado...");
             $("#mensajes").hide(1000);
             location.reload();
-            //clearfield();
+            clearfield();
              mensaje();
             //listar();
         },
@@ -51,8 +51,8 @@ $('#submitbtn').click(function (e) {
     });
 
     function clearfield(){
-      $("#Textarea1").val(" ");
-
+      $("#Textarea1").val("");
+      $("#Name").val("");
     }
 });
 

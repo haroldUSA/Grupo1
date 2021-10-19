@@ -128,7 +128,7 @@ $('#submitbtn').click(function (e) {
             $("#mensajes").html("Registro Agregado...");
             $("#mensajes").hide(1000);
             //location.reload();
-            //clearfield();
+            clearfield();
              mensaje();
             //listar();
         },
@@ -143,10 +143,10 @@ $('#submitbtn').click(function (e) {
     });
 
     function clearfield(){
-      $("#ID").val("");
+      $("#datepicker").val("");
       $("#Brand").val("");
-      $("#Model").val("");
-      $("#Category_id").val("");
+      $("#Textarea1").val("");
+      $("#IDCategory").val("");
       $("#Name").val("");
     }
 });
