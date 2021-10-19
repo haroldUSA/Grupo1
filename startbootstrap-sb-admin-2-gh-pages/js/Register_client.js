@@ -44,10 +44,10 @@ $('#submitbtn').click(function (e) {
             $("#mensajes").show(1000);
             $("#mensajes").html("Registro Agregado...");
             $("#mensajes").hide(1000);
-            //location.reload();
-            //clearfield();
+            location.reload();
+            clearfield();
              mensaje();
-             getid();
+             //getid();
             //listar();
         },
 

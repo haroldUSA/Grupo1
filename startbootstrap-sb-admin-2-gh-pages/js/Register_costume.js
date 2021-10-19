@@ -3,6 +3,8 @@ $(document).ready(function (e) {
     var secondname = $('#LastName').val();
     var email = $('#InputEmail').val();
     var age = $('#Age').val();*/
+    $('#IDnumber').hide();
+        $('#IDCategory').hide();
 
     $("#datepicker").datepicker({
         format: "yyyy",
@@ -32,8 +34,6 @@ $(document).ready(function (e) {
         cont=cont+1;
         });
         $('#client').append(client_data);
-        $('#IDnumber').hide(500);
-        $('#IDCategory').hide(500);
         $("#IDnumber").val(cont);
         //clearfield();
     })
