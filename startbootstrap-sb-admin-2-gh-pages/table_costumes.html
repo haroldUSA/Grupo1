@@ -12,7 +12,7 @@
     <title>costumes - Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link href="https://haroldrs1302.000webhostapp.com/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -68,17 +68,20 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
-                    aria-expanded="true" aria-controls="collapsePages1">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages01"
+                    aria-expanded="true" aria-controls="collapsePages01">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span>
                 </a>
-                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages01" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">User data:</h6>
+                        <a class="collapse-item" href="table_admins.html">Admin</a>
                         <a class="collapse-item" href="table_clientes.html">Client</a>
+                        <a class="collapse-item" href="table_category.html">Category</a>
                         <a class="collapse-item" href="table_costumes.html">Costume</a>
                         <a class="collapse-item" href="table_messages.html">Message</a>
+                        <a class="collapse-item" href="table_reservations.html">Reservations</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>
@@ -330,20 +333,22 @@
                                     <thead>
                                         <tr>
                                             <!--<th>ID</th>-->
-                                            <th>BRAND</th>
-                                            <th>MODEL</th>
-                                            <th>CATEGORY_ID</th>
                                             <th>NAME</th>
+                                            <th>BRAND</th>
+                                            <th>YEAR</th>
+                                            <th>DESCRIPTION</th>
+                                            <th>CATEGORY</th>
                                             <th>DETAILS</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <!--<th>ID</th>-->
-                                            <th>BRAND</th>
-                                            <th>MODEL</th>
-                                            <th>CATEGORY_ID</th>
                                             <th>NAME</th>
+                                            <th>BRAND</th>
+                                            <th>YEAR</th>
+                                            <th>DESCRIPTION</th>
+                                            <th>CATEGORY</th>
                                             <th>DETAILS</th>
                                         </tr>
                                     </tfoot>
@@ -411,7 +416,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="https://haroldrs1302.000webhostapp.com/vendor/jquery/jquery.min.js"></script>
     <script src="https://haroldrs1302.000webhostapp.com/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://haroldrs1302.000webhostapp.com/js/Get_costumes.js"></script>
+    <script src="js/Get_costumes.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="https://haroldrs1302.000webhostapp.com/vendor/jquery-easing/jquery.easing.min.js"></script>

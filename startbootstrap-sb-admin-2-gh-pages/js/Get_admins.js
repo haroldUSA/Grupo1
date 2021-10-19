@@ -6,17 +6,15 @@ $(document).ready(function (e) {
 
 
 
-    $.getJSON("http://129.151.111.220:8080/api/Costume/all", 
+    $.getJSON("http://129.151.111.220:8080/api/Admin/all", 
     function (data) {
         var client_data="";
         $.each(data,function(key,value){
         client_data+='<tr>';
         //client_data+='<td>'+value.id+'</td>';
         client_data+='<td>'+value.name+'</td>';
-        client_data+='<td>'+value.brand+'</td>';
-        client_data+='<td>'+value.year+'</td>';
-        client_data+='<td>'+value.description+'</td>';
-        client_data+='<td>'+value.category.name+'</td>';
+        client_data+='<td>'+value.email+'</td>';
+       // client_data+='<td>'+value.password+'</td>';
         client_data+=`<td align="center"><button  style="background-color:#224abe"
         class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -31,28 +29,22 @@ $(document).ready(function (e) {
                     <h6 class="collapse-header" style="color:#224abe">Options:
                     </h6>
                     <a class="collapse-item"
-                        >Brand
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Brand${value.id}" placeholder="Brand">
-                    </div>                    
-                    <a class="collapse-item"
-                        >Model
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Model${value.id}" placeholder="Model">
-                    </div>
-                    <a class="collapse-item"
-                        >Category id
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Category_id${value.id}" placeholder="Category id">
-                    </div>
-                    <a class="collapse-item"
                         >Name
                     </a>
                     <div class="form-group"><label
                             for="example"></label><input type="text" class="form-control form-control-user" id="Name${value.id}" placeholder="Name">
+                    </div>                    
+                    <a class="collapse-item"
+                        >Email
+                    </a>
+                    <div class="form-group"><label
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Email${value.id}" placeholder="Email">
+                    </div>
+                    <a class="collapse-item"
+                        >Age
+                    </a>
+                    <div class="form-group"><label
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Age${value.id}" placeholder="Age">
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.id})"
                             class="btn btn-primary btn-user btn-block ">Update
@@ -75,13 +67,13 @@ $(document).ready(function (e) {
         //clearfield();
     })
 
-    /* $.get("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume", 
+    /* $.get("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client", 
      function (data) {
          console.log('success====:', data);
          //clearfield();
      })*/
 /*
-     let url = "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume";
+     let url = "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client";
 
     fetch(url)
         .then(res => res.json())
@@ -113,7 +105,7 @@ function deleteMessage(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume",
+        url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -156,10 +148,9 @@ function editarRegistro(llaveRegistro) {
     //crea un objeto javascript
     let datos = {
         id: llaveRegistro,
-        brand: $("#Brand"+llaveRegistro).val(),
-        model: $("#Model"+llaveRegistro).val(),
-        category_id: $("#Category_id"+llaveRegistro).val(),
-        name: $("#Name"+llaveRegistro).val()
+        name: $("#Name"+llaveRegistro).val(),
+        email: $("#Email"+llaveRegistro).val(),
+        age: $("#Age"+llaveRegistro).val()
     }
 
     //convierte el objeto javascript a json antes de agregarlo a los datos de la petición
@@ -168,7 +159,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume",
+            url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -211,38 +202,31 @@ function editarRegistro(llaveRegistro) {
 function validarEditar(llaveRegistro){
     //obtiene valores
     let id = llaveRegistro;
-    let brand= $("#Brand"+llaveRegistro).val();
-    let model= $("#Model"+llaveRegistro).val();
-    let category_id= $("#Category_id"+llaveRegistro).val();
     let name= $("#Name"+llaveRegistro).val();
+    let email= $("#Email"+llaveRegistro).val();
+    let age= $("#Age"+llaveRegistro).val();
     let errores="";
     $("#mensajes").html("");
 
     //valida que los campos no sean vacios
-    if( validaesVacio(brand)) {
+    if( validaesVacio(name)) {
         errores="name vacio<br>";
         $("#mensajes").html(errores);
         $("#mensajes").show(500);
         $("#nameEdit").focus();
         return false;
-    }else if( validaesVacio(model)) {
+    }else if( validaesVacio(email)) {
         errores="brand vacio<br>";
         $("#mensajes").html(errores);
         $("#mensajes").show(500);
         $("#brandEdit").focus();
         return false;
-    }else if( validaesVacio(category_id)) {  
+    }else if( validaesVacio(age)) {  
         errores="model vacio<br>";
         $("#mensajes").html(errores);
         $("#mensajes").show(500);
         $("#modelEdit").focus();
         return false;
-    }else if( validaesVacio(name)) {  
-            errores="model vacio<br>";
-            $("#mensajes").html(errores);
-            $("#mensajes").show(500);
-            $("#modelEdit").focus();
-            return false;
     }else{
         $("#mensajes").html("");
         $("#mensajes").hide(500);
@@ -262,7 +246,7 @@ function validaesVacio(dato){
     console.log("entro");
     var messagetext = $('#Textarea').val();
 
-    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume/", {
+    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client/", {
         id: 1,
         messagetext: messagetext
     }, function (response) {
