@@ -8,11 +8,15 @@ $('#submitbtn').click(function (e) {
     var secondname = $('#LastName').val();
     var email = $('#InputEmail').val();
     var password = $('#Password').val();
+    console.log(firstname);
+    console.log(secondname);
+    console.log(email);
+    console.log(password);
 
     let datos={
-        name: firstname + " " + secondname,
         email: email,
-        password: password,
+        name: firstname + " " + secondname,
+        password: password
     }
    
     let datosPeticion = JSON.stringify(datos);

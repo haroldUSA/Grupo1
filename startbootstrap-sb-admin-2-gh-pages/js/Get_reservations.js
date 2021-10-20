@@ -10,8 +10,9 @@ $(document).ready(function (e) {
     function (data) {
         var client_data="";
         $.each(data,function(key,value){
+        //$("#IDReservation").val(value.id);    
         client_data+='<tr>';
-       // client_data+='<td>'+value.id+'</td>';
+      //  client_data+='<td>'+value.idReservation+'</td>';
         client_data+='<td>'+value.startDate+'</td>';
         client_data+='<td>'+value.devolutionDate+'</td>';
         client_data+='<td>'+value.status+'</td>';
@@ -19,15 +20,27 @@ $(document).ready(function (e) {
         client_data+='<td>'+value.client.idClient+'</td>';
         client_data+='<td>'+value.client.name+'</td>';
         client_data+='<td>'+value.client.email+'</td>'
-        client_data+='<td>'+if(value.score){}+'</td>';
-        client_data+=`<td align="center"><button  style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
+        if(value.score==null){
+            client_data+='<td>No Score</td>';
+            client_data+=`<td align="center"><button onclick="calificateReservation(${value.idReservation})" style="background-color:#224abe"
+        class="rectangular-circle border-6" id="scorebuttom${value.idReservation}"><a
+        class="nav-link collapsed" href="#" 
+        data-target="#collapsePages"><i
+            class="fas fa-fw fa-trash-alt"></i><span
+            style="color:white">Score</span></a></button>`
+        }else {
+            client_data+='<td>'+value.score.stars+'</td>';  
+            client_data+=`<td align="center">`         
+        }
+        client_data+=`
+        <button  style="background-color:#224abe"
+        class="rectangular-circle border-6" id="Editbuttom${value.idReservation}"><a onclick="actualizar(${value.idReservation})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"
-                data-target="#collapsePages${value.id}" aria-expanded="true"
-                aria-controls="collapsePages${value.id}"><i
+                data-target="#collapsePages${value.idReservation}" aria-expanded="true"
+                aria-controls="collapsePages${value.idReservation}"><i
                     class="fas fa-fw fa-edit"></i><span
                     style="color:white">Editar</span></a>
-            <div id="collapsePages${value.id}" class="collapse"
+            <div id="collapsePages${value.idReservation}" class="collapse"
                 aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white  collapse-inner rounded"
                     align="center">
@@ -36,16 +49,16 @@ $(document).ready(function (e) {
                         >Message</a>
                     <div class="form-group"><label
                             for="example"></label><textarea class="form-control"
-                            id="Textarea${value.id}" rows="3"></textarea></div>
-                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.id})"
+                            id="Textarea${value.idReservation}" rows="3"></textarea></div>
+                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.idReservation})"
                             class="btn btn-primary btn-user btn-block ">Update
                             Message!</a></div>
                     <div class="collapse-divider"></div>
                 </div>
             </div>
         </button>
-        <button onclick="deleteMessage(${value.id})" style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Deletebuttom${value.id}"><a
+        <button onclick="deleteMessage(${value.idReservation})" style="background-color:#224abe"
+        class="rectangular-circle border-6" id="Deletebuttom${value.idReservation}"><a
         class="nav-link collapsed" href="#" 
         data-target="#collapsePages"><i
             class="fas fa-fw fa-trash-alt"></i><span
@@ -83,6 +96,16 @@ $(document).ready(function (e) {
 function actualizar(llaveRegistro){
     $("#Deletebuttom"+llaveRegistro).toggle();
 
+}
+
+function calificateReservation(llaveRegistro){
+    $('#scorebuttom'+llaveRegistro).hide();
+    redireccionar(llaveRegistro);
+}
+
+function redireccionar(id) {
+    //console.log(id);
+    location.href = "/Register_score.html?prodId="+id;
 }
 
 function deleteMessage(llaveRegistro){

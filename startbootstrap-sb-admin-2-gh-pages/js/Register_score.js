@@ -49,11 +49,23 @@ $('#submitbtn').click(function (e) {
     e.preventDefault()
     var Textarea = $('#Textarea1').val();
     var idreservation = $('#IDReservation').val();
-    for (let index = 1; index <= 5; index++) {
+    const rbs = document.querySelectorAll('input[name="estrellas"]');
+    var cont=0;
+    for (const rb of rbs) {
+        cont=cont+1;
+        if (rb.checked) {
+            var stars = 6-$('#radio'+cont).val();
+           // var stars=rb.value;
+            console.log(stars);
+            break;
+        }
+    }
+   /* for (let index = 1; index <= 5; index++) {
         if($("#radio"+index).prop("checked", true)){
             var stars = $('#radio'+index).val();
+            console.log(stars);
         }
-    }              
+    }      */        
      console.log(Textarea);
      console.log(stars);
      console.log(idreservation);
