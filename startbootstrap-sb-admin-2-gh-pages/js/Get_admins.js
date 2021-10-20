@@ -6,62 +6,58 @@ $(document).ready(function (e) {
 
 
 
-    $.getJSON("http://129.151.111.220:8080/api/Reservation/all", 
+    $.getJSON("http://129.151.111.220:8080/api/Admin/all", 
     function (data) {
         var client_data="";
         $.each(data,function(key,value){
-        //$("#IDReservation").val(value.id);    
         client_data+='<tr>';
-      //  client_data+='<td>'+value.idReservation+'</td>';
-        client_data+='<td>'+value.startDate+'</td>';
-        client_data+='<td>'+value.devolutionDate+'</td>';
-        client_data+='<td>'+value.status+'</td>';
-        client_data+='<td>'+value.costume.name+'</td>';
-        client_data+='<td>'+value.client.idClient+'</td>';
-        client_data+='<td>'+value.client.name+'</td>';
-        client_data+='<td>'+value.client.email+'</td>'
-        if(value.score==null){
-            client_data+='<td>No Score</td>';
-            client_data+=`<td align="center"><button onclick="calificateReservation(${value.idReservation})" style="background-color:#224abe"
-        class="rectangular-circle border-6" id="scorebuttom${value.idReservation}"><a
-        class="nav-link collapsed" href="#" 
-        data-target="#collapsePages"><i
-            class="fas fa-fw fa-trash-alt"></i><span
-            style="color:white">Score</span></a></button>`
-        }else {
-            client_data+='<td>'+value.score.stars+'</td>';  
-            client_data+=`<td align="center">`         
-        }
-        client_data+=`
-        <button  style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Editbuttom${value.idReservation}"><a onclick="actualizar(${value.idReservation})"
+        //client_data+='<td>'+value.id+'</td>';
+        client_data+='<td>'+value.name+'</td>';
+        client_data+='<td>'+value.email+'</td>';
+       // client_data+='<td>'+value.password+'</td>';
+        client_data+=`<td align="center"><button  style="background-color:#224abe"
+        class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"
-                data-target="#collapsePages${value.idReservation}" aria-expanded="true"
-                aria-controls="collapsePages${value.idReservation}"><i
+                data-target="#collapsePages${value.id}" aria-expanded="true"
+                aria-controls="collapsePages${value.id}"><i
                     class="fas fa-fw fa-edit"></i><span
                     style="color:white">Editar</span></a>
-            <div id="collapsePages${value.idReservation}" class="collapse"
+            <div id="collapsePages${value.id}" class="collapse"
                 aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white  collapse-inner rounded"
                     align="center">
                     <h6 class="collapse-header" style="color:#224abe">Options:
-                    </h6><a class="collapse-item"
-                        >Message</a>
+                    </h6>
+                    <a class="collapse-item"
+                        >Name
+                    </a>
                     <div class="form-group"><label
-                            for="example"></label><textarea class="form-control"
-                            id="Textarea${value.idReservation}" rows="3"></textarea></div>
-                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.idReservation})"
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Name${value.id}" placeholder="Name">
+                    </div>                    
+                    <a class="collapse-item"
+                        >Email
+                    </a>
+                    <div class="form-group"><label
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Email${value.id}" placeholder="Email">
+                    </div>
+                    <a class="collapse-item"
+                        >Age
+                    </a>
+                    <div class="form-group"><label
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Age${value.id}" placeholder="Age">
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.id})"
                             class="btn btn-primary btn-user btn-block ">Update
-                            Message!</a></div>
+                            client!</a></div>
                     <div class="collapse-divider"></div>
                 </div>
             </div>
         </button>
-        <button onclick="deleteMessage(${value.idReservation})" style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Deletebuttom${value.idReservation}"><a
+        <button onclick="deleteMessage(${value.id})" style="background-color:#224abe"
+        class="rectangular-circle border-6" id="Deletebuttom${value.id}"><a
         class="nav-link collapsed" href="#" 
         data-target="#collapsePages"><i
-            class="fas fa-fw fa-trash-alt"></i><span
+            class="fas fa-trash-alt"></i><span
             style="color:white">Delete</span></a></button>
     </td>`
         client_data+='</tr>';
@@ -98,16 +94,6 @@ function actualizar(llaveRegistro){
 
 }
 
-function calificateReservation(llaveRegistro){
-    $('#scorebuttom'+llaveRegistro).hide();
-    redireccionar(llaveRegistro);
-}
-
-function redireccionar(id) {
-    //console.log(id);
-    location.href = "/Register_score.html?prodId="+id;
-}
-
 function deleteMessage(llaveRegistro){
     //crea un objeto javascript
     let datos={
@@ -119,7 +105,7 @@ function deleteMessage(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/message/message",
+        url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -158,11 +144,13 @@ function deleteMessage(llaveRegistro){
 
 function editarRegistro(llaveRegistro) {
     console.log(llaveRegistro);
-    console.log($("#Textarea"+llaveRegistro).val());
+    //console.log($("#Textarea"+llaveRegistro).val());
     //crea un objeto javascript
     let datos = {
         id: llaveRegistro,
-        messagetext: $("#Textarea"+llaveRegistro).val()
+        name: $("#Name"+llaveRegistro).val(),
+        email: $("#Email"+llaveRegistro).val(),
+        age: $("#Age"+llaveRegistro).val()
     }
 
     //convierte el objeto javascript a json antes de agregarlo a los datos de la petición
@@ -171,7 +159,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/message/message",
+            url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -214,22 +202,38 @@ function editarRegistro(llaveRegistro) {
 function validarEditar(llaveRegistro){
     //obtiene valores
     let id = llaveRegistro;
-    let messagetext = $("#Textarea"+llaveRegistro).val();
+    let name= $("#Name"+llaveRegistro).val();
+    let email= $("#Email"+llaveRegistro).val();
+    let age= $("#Age"+llaveRegistro).val();
     let errores="";
     $("#mensajes").html("");
 
     //valida que los campos no sean vacios
-    if( validaesVacio(messagetext)) {
-        errores="messagetext vacio<br>";
+    if( validaesVacio(name)) {
+        errores="name vacio<br>";
         $("#mensajes").html(errores);
         $("#mensajes").show(500);
         $("#nameEdit").focus();
+        return false;
+    }else if( validaesVacio(email)) {
+        errores="brand vacio<br>";
+        $("#mensajes").html(errores);
+        $("#mensajes").show(500);
+        $("#brandEdit").focus();
+        return false;
+    }else if( validaesVacio(age)) {  
+        errores="model vacio<br>";
+        $("#mensajes").html(errores);
+        $("#mensajes").show(500);
+        $("#modelEdit").focus();
         return false;
     }else{
         $("#mensajes").html("");
         $("#mensajes").hide(500);
         return true;
     }
+
+    return true;
 }
 
 function validaesVacio(dato){
@@ -242,7 +246,7 @@ function validaesVacio(dato){
     console.log("entro");
     var messagetext = $('#Textarea').val();
 
-    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/message/message/", {
+    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client/", {
         id: 1,
         messagetext: messagetext
     }, function (response) {

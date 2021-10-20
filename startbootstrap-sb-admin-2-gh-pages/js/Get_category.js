@@ -8,12 +8,19 @@ $(document).ready(function (e) {
 
     $.getJSON("http://129.151.111.220:8080/api/Category/all", 
     function (data) {
-        var client_data="";
-        $.each(data["items"],function(key,value){
-         ID=value.id;   
+        var client_data=""; 
+        $.each(data,function(key,value){
         client_data+='<tr>';
        // client_data+='<td>'+value.id+'</td>';
-        client_data+='<td>'+value.messagetext+'</td>';
+        client_data+='<td>'+value.name+'</td>';
+        client_data+='<td>'+value.description+'</td>';
+        client_data+='<td>';
+        client_data+='<ol>';
+        $.each(value.costumes,function(key,value2){
+            client_data+='<li>'+value2.name+'</li>';
+            });
+        client_data+='</ol>';
+        client_data+='</td>';           
         client_data+=`<td align="center"><button  style="background-color:#224abe"
         class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"

@@ -1,18 +1,29 @@
+$(document).ready(function (e) {
+    $('#ID').hide(5);
+});
 $('#submitbtn').click(function (e) {
     e.preventDefault()
-    var Textarea = $('#Textarea1').val();
-    var Name = $('#Name').val();
+   // var id = $('#ID').val();
+    var firstname = $('#FirstName').val();
+    var secondname = $('#LastName').val();
+    var email = $('#InputEmail').val();
+    var password = $('#Password').val();
+    console.log(firstname);
+    console.log(secondname);
+    console.log(email);
+    console.log(password);
 
     let datos={
-        name: Name ,
-        description: Textarea 
+        email: email,
+        name: firstname + " " + secondname,
+        password: password
     }
-
+   
     let datosPeticion = JSON.stringify(datos);
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Category/save",
+        url: "http://129.151.111.220:8080/api/Admin/save",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -38,6 +49,7 @@ $('#submitbtn').click(function (e) {
             location.reload();
             clearfield();
              mensaje();
+             //getid();
             //listar();
         },
 
@@ -50,18 +62,36 @@ $('#submitbtn').click(function (e) {
         }
     });
 
-    function clearfield(){
-      $("#Textarea1").val("");
-      $("#Name").val("");
+    function clearfield() {
+     //   $("#ID").val("");
+        $("#FirstName").val("");
+        $("#LastName").val("");
+        $("#InputEmail").val("");
+        $("#Password").val("");
+        $("#Age").val("");
     }
 });
 
-
 function mensaje(){
-    alert("Categoria creada exitosamente!!")
+    alert("Usuario creado exitosamente!!!")
 }
 
 function redireccionar() {
-    console.log("entro");
-    location.href = "/table_category.html";;
+    var id = $('#ID').val();
+    //console.log(id);
+    location.href = "/register_message.html?prodId="+id;
 }
+function getid(){
+    $.getJSON("http://129.151.111.220:8080/api/Client/all", 
+    function (data) {
+        var ID=0;
+        $.each(data,function(key,value){
+         ID=value.idClient;
+        });
+        $('#ID').val(ID);
+        console.log(ID);
+        redireccionar();
+        //clearfield();
+    })
+}
+

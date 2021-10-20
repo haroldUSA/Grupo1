@@ -3,36 +3,19 @@ $(document).ready(function (e) {
     var secondname = $('#LastName').val();
     var email = $('#InputEmail').val();
     var age = $('#Age').val();*/
-    var prodId = getParameterByName('prodId');
-    $("#IDClient").val(prodId);
-    console.log(prodId);
+    $('#IDnumber').hide();
+    $('#IDCostume').hide();
     $('#IDClient').hide();
     $('#IDnumber0').hide();
-    $('#IDCostume').hide();
-    $('#IDnumber').hide();
 
-    $.getJSON("http://129.151.111.220:8080/api/Costume/all", 
-    function (data) {
-        var client_data="";
-        var select_data="";
-        var cont=0;
-        $.each(data,function(key,value){
-         ID=value.ID;   
-        client_data+='<a class="dropdown-item" onclick="selectCostume('+value.id+')';
-       // client_data+='<td>'+value.id+'</td>';
-        client_data+='">'+value.name+'</a><div class="dropdown-divider"></div>';
-        select_data=`<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown${value.id}"
-        role="button" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        ${value.name}
-        </a>`;
-        $('#barra').append(select_data);
-        $('#navbarDropdown'+value.id).hide(5);
-        cont=cont+1;
-        });
-        $('#client').append(client_data);
-        $("#IDnumber").val(cont);
-        //clearfield();
+    $("#datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+    })
+
+    $("#datepicker0").datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
     })
 
     $.getJSON("http://129.151.111.220:8080/api/Client/all", 
@@ -56,6 +39,30 @@ $(document).ready(function (e) {
         });
         $('#client0').append(client_data);
         $("#IDnumber0").val(cont);
+        //clearfield();
+    })
+
+    $.getJSON("http://129.151.111.220:8080/api/Costume/all", 
+    function (data) {
+        var client_data="";
+        var select_data="";
+        var cont=0;
+        $.each(data,function(key,value){
+         ID=value.ID;   
+        client_data+='<a class="dropdown-item" onclick="selectCostume('+value.id+')';
+       // client_data+='<td>'+value.id+'</td>';
+        client_data+='">'+value.name+'</a><div class="dropdown-divider"></div>';
+        select_data=`<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown${value.id}"
+        role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        ${value.name}
+        </a>`;
+        $('#barra').append(select_data);
+        $('#navbarDropdown'+value.id).hide(5);
+        cont=cont+1;
+        });
+        $('#client').append(client_data);
+        $("#IDnumber").val(cont);
         //clearfield();
     })
 
@@ -98,21 +105,21 @@ $(document).ready(function (e) {
 
 $('#submitbtn').click(function (e) {
     e.preventDefault()
-    var Textarea = $('#Textarea1').val();
-    var idcostume = $('#IDCostume').val();
-    var idclient = $('#IDClient').val();
-    
-     console.log(Textarea);
-     console.log(idcostume);
-     console.log(idclient);
+   // var id = $('#ID').val();
+    var startDate =$('#datepicker').val();
+    var devolutionDate =$('#datepicker0').val();
+    var idClient = $('#IDClient').val();
+    var id=$('#IDCostume').val();
 
     let datos={
-        messageText: Textarea, 
+       // id: id,
+        startDate: startDate,
+        devolutionDate: devolutionDate,
         client: {
-            idClient: idclient
+            idClient: idClient 
         },
         costume: {
-            id: idcostume 
+            id: id 
         }
     }
 
@@ -120,7 +127,7 @@ $('#submitbtn').click(function (e) {
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Message/save",
+        url: "http://129.151.111.220:8080/api/Reservation/save",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -159,8 +166,12 @@ $('#submitbtn').click(function (e) {
     });
 
     function clearfield(){
-      $("#Textarea1").val(" ");
-
+      $("#datepicker0").val("");
+      $("#datepicker").val("");
+      $("#Brand").val("");
+      $("#Textarea1").val("");
+      $("#IDCategory").val("");
+      $("#Name").val("");
     }
 });
 
@@ -194,18 +205,12 @@ function selectClient(llaveRegistro) {
     }
 }
 
+
 function mensaje(){
-    alert("Mensaje registrado exitosamente!!")
+    alert("Disfraz registrado exitosamente!!")
 }
 
 function redireccionar() {
     console.log("entro");
-    location.href = "/table_clientes.html";;
-}
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    location.href = "/register_message.html";;
 }

@@ -6,17 +6,17 @@ $(document).ready(function (e) {
 
 
 
-    $.getJSON("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume", 
+    $.getJSON("http://129.151.111.220:8080/api/Costume/all", 
     function (data) {
         var client_data="";
-        $.each(data["items"],function(key,value){
-         ID=value.id;   
+        $.each(data,function(key,value){
         client_data+='<tr>';
         //client_data+='<td>'+value.id+'</td>';
-        client_data+='<td>'+value.brand+'</td>';
-        client_data+='<td>'+value.model+'</td>';
-        client_data+='<td>'+value.category_id+'</td>';
         client_data+='<td>'+value.name+'</td>';
+        client_data+='<td>'+value.brand+'</td>';
+        client_data+='<td>'+value.year+'</td>';
+        client_data+='<td>'+value.description+'</td>';
+        client_data+='<td>'+value.category.name+'</td>';
         client_data+=`<td align="center"><button  style="background-color:#224abe"
         class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"
