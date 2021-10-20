@@ -105,7 +105,7 @@ function calificateReservation(llaveRegistro){
 
 function redireccionar(id) {
     //console.log(id);
-    location.href = "/Register_score.html?prodId="+id;
+    location.href = "/register_score.html?prodId="+id;
 }
 
 function deleteMessage(llaveRegistro){
