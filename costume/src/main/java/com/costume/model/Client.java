@@ -29,11 +29,11 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
     @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
+    private String name;
     @Column(nullable = false)
     private Integer age;
     
