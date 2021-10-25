@@ -32,5 +32,7 @@ public class CostumeRepository {
     public Costume save(Costume costume){
         return costumeCrudRepository.save(costume);
     }
-    
+    public void delete(Costume costume){
+        costumeCrudRepository.delete(costume);
+    }
 }

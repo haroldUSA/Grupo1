@@ -6,7 +6,7 @@ $(document).ready(function (e) {
 
 
 
-    $.getJSON("http://129.151.111.220:8080/api/Costume/all", 
+    $.getJSON("http://129.151.118.167:8080/api/Costume/all", 
     function (data) {
         var client_data="";
         $.each(data,function(key,value){

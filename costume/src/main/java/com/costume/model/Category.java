@@ -30,14 +30,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category implements Serializable {
+    /**
+     * primary key usada para Category
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Integer id;
+    /**
+     * nombre de la persona
+     */
     @Column(nullable = false, length = 45)
     private String name;
+    /**
+     * descripcion de la persona
+     */
     @Column(nullable = false, length = 250)
     private String description;
-    
+    /**
+     * forany kay de costume
+     */
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "category")
     @JsonIgnoreProperties("category")
     private List<Costume> costumes;

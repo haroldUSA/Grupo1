@@ -40,6 +40,40 @@ public class ClientService {
         }
         
     }
+    public boolean deleteClient(int id){
+        Optional<Client> clientd = clientRepository.getClient(id);
+        if (clientd.isEmpty()) {
+            return false;
+        } else {
+            clientRepository.delete(clientd.get());
+            return true;
+        }
+    }
+    public Client updateClient(Client client){
+        
+        if (client.getIdClient()!=null) {
+            Optional<Client> clientU = clientRepository.getClient(client.getIdClient());
+            
+            if (!clientU.isEmpty()) {
+                          
+                if (client.getName()!= null){
+                    clientU.get().setName(client.getName());
+            }
+                if (client.getEmail()!= null){
+                    clientU.get().setEmail(client.getEmail());
+                }
+                if (client.getPassword()!= null){
+                    clientU.get().setPassword(client.getPassword());
+                }
+                if (client.getAge()!= null){
+                    clientU.get().setAge(client.getAge());
+                }
+            }
+            return clientRepository.save(clientU.get());
+        } 
+        return client;
+    }
     
+   
     
 }
