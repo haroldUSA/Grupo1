@@ -53,7 +53,7 @@ $(document).ready(function (e) {
                 </div>
             </div>
         </button>
-        <button onclick="deleteMessage(${value.id})" style="background-color:#224abe"
+        <button onclick="deleteMessage(${value.idAdmin})" style="background-color:#224abe"
         class="rectangular-circle border-6" id="Deletebuttom${value.id}"><a
         class="nav-link collapsed" href="#" 
         data-target="#collapsePages"><i
