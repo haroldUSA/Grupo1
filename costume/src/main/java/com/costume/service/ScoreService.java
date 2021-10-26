@@ -38,5 +38,32 @@ public class ScoreService {
              }
          }
      }
+     public boolean deleteScore (int id ){
+         Optional<Score> scored = scoreRepository.getScore(id);
+         if (scored.isEmpty()) {
+             return false;
+         } else {
+             scoreRepository.delete(scored.get());
+             return true;
+         }
+     }
+     public Score updateClient(Score score){
+        
+        if (score.getIdScore()!=null) {
+            Optional<Score> scoreU = scoreRepository.getScore(score.getIdScore());
+            
+            if (!scoreU.isEmpty()) {
+                          
+                if (score.getMessageText()!= null){
+                    scoreU.get().setMessageText(score.getMessageText());
+            }
+                if (score.getStars()!= null){
+                    scoreU.get().setStars(score.getStars());
+                }                
+            }
+            return scoreRepository.save(scoreU.get());
+        } 
+        return score;
+    }
     
 }

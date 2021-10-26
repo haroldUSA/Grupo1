@@ -40,4 +40,37 @@ public class CostumeService {
             }
         }
     }
+    public boolean deleteCostume(int id){
+        Optional<Costume> costumed = costumeRepository.getCostume(id);
+        if (costumed.isEmpty()) {
+            return false;
+        } else {
+            costumeRepository.delete(costumed.get());
+            return true;
+        }
+    }
+    public Costume updateCostume(Costume costume){
+        
+        if (costume.getId()!=null) {
+            Optional<Costume> costumeU = costumeRepository.getCostume(costume.getId());
+            
+            if (!costumeU.isEmpty()) {
+                          
+                if (costume.getName()!= null){
+                    costumeU.get().setName(costume.getName());
+            }
+                if (costume.getBrand()!= null){
+                    costumeU.get().setBrand(costume.getBrand());
+                }
+                if (costume.getYear()!= null){
+                    costumeU.get().setYear(costume.getYear());
+                }
+                if (costume.getDescription()!= null){
+                    costumeU.get().setDescription(costume.getDescription());
+                }
+            }
+            return costumeRepository.save(costumeU.get());
+        } 
+        return costume;
+    }
 }
