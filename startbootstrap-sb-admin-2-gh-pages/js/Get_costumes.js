@@ -113,7 +113,7 @@ function deleteMessage(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume",
+        url: "http://129.151.111.220:8080/api/Costume",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -168,7 +168,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume",
+            url: "http://129.151.111.220:8080/api/Costume/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
