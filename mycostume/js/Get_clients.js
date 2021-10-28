@@ -6,63 +6,59 @@ $(document).ready(function (e) {
 
 
 
-    $.getJSON("http://129.151.111.220:8080/api/Costume/all", 
+    $.getJSON("http://129.151.111.220:8080/api/Client/all", 
     function (data) {
         var client_data="";
         $.each(data,function(key,value){
         client_data+='<tr>';
-        //client_data+='<td>'+value.id+'</td>';
+        //client_data+='<td>'+value.idClient+'</td>';
         client_data+='<td>'+value.name+'</td>';
-        client_data+='<td>'+value.brand+'</td>';
-        client_data+='<td>'+value.year+'</td>';
-        client_data+='<td>'+value.description+'</td>';
-        client_data+='<td>'+value.category.name+'</td>';
+        client_data+='<td>'+value.email+'</td>';
+       // client_data+='<td>'+value.password+'</td>';
+        client_data+='<td>'+value.age+'</td>';
         client_data+=`<td align="center"><button  style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
+        class="rectangular-circle border-6" id="Editbuttom${value.idClient}"><a onclick="actualizar(${value.idClient})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"
-                data-target="#collapsePages${value.id}" aria-expanded="true"
-                aria-controls="collapsePages${value.id}"><i
+                data-target="#collapsePages${value.idClient}" aria-expanded="true"
+                aria-controls="collapsePages${value.idClient}"><i
                     class="fas fa-fw fa-edit"></i><span
                     style="color:white">Editar</span></a>
-            <div id="collapsePages${value.id}" class="collapse"
+            <div id="collapsePages${value.idClient}" class="collapse"
                 aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white  collapse-inner rounded"
                     align="center">
                     <h6 class="collapse-header" style="color:#224abe">Options:
                     </h6>
                     <a class="collapse-item"
-                        >Brand
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Brand${value.id}" placeholder="Brand">
-                    </div>                    
-                    <a class="collapse-item"
-                        >Model
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Model${value.id}" placeholder="Model">
-                    </div>
-                    <a class="collapse-item"
-                        >Category id
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Category_id${value.id}" placeholder="Category id">
-                    </div>
-                    <a class="collapse-item"
                         >Name
                     </a>
                     <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Name${value.id}" placeholder="Name">
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Name${value.idClient}" placeholder="Name">
+                            <a id="Mname${value.idClient}" style="color: red;">this field cannot be blank!</a>
+                    </div>                    
+                    <a class="collapse-item"
+                        >Email
+                    </a>
+                    <div class="form-group"><label
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Email${value.idClient}" placeholder="Email">
+                            <a id="Memail${value.idClient}" style="color: red;">this field cannot be blank!</a>
                     </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.id})"
+                    <a class="collapse-item"
+                        >Age
+                    </a>
+                    <div class="form-group"><label
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Age${value.idClient}" placeholder="Age">
+                            <a id="Mage${value.idClient}" style="color: red;">this field cannot be blank!</a>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.idClient})"
                             class="btn btn-primary btn-user btn-block ">Update
                             client!</a></div>
                     <div class="collapse-divider"></div>
                 </div>
             </div>
         </button>
-        <button onclick="deleteMessage(${value.id})" style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Deletebuttom${value.id}"><a
+        <button onclick="deleteClient(${value.idClient})" style="background-color:#224abe"
+        class="rectangular-circle border-6" id="Deletebuttom${value.idClient}"><a
         class="nav-link collapsed" href="#" 
         data-target="#collapsePages"><i
             class="fas fa-trash-alt"></i><span
@@ -71,17 +67,17 @@ $(document).ready(function (e) {
         client_data+='</tr>';
         });
         $('#client').append(client_data);
-        $('#idEdit').hide(500);
+        $('#idEdit').hide();
         //clearfield();
     })
 
-    /* $.get("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume", 
+    /* $.get("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client", 
      function (data) {
          console.log('success====:', data);
          //clearfield();
      })*/
 /*
-     let url = "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume";
+     let url = "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client";
 
     fetch(url)
         .then(res => res.json())
@@ -99,10 +95,12 @@ $(document).ready(function (e) {
 
 function actualizar(llaveRegistro){
     $("#Deletebuttom"+llaveRegistro).toggle();
-
+    $("#Memail"+llaveRegistro).hide();
+    $("#Mname"+llaveRegistro).hide();
+    $("#Mage"+llaveRegistro).hide();
 }
 
-function deleteMessage(llaveRegistro){
+function deleteClient(llaveRegistro){
     //crea un objeto javascript
     let datos={
         id: llaveRegistro
@@ -113,12 +111,12 @@ function deleteMessage(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Costume",
+        url: "http://129.151.111.220:8080/api/Client/"+llaveRegistro,
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
         //si el metodo del servicio recibe datos, es necesario definir el parametro adicional
-        data : datosPeticion,
+//        data : datosPeticion,
 
         // especifica el tipo de petición http: POST, GET, PUT, DELETE
         type: 'DELETE',
@@ -155,11 +153,10 @@ function editarRegistro(llaveRegistro) {
     //console.log($("#Textarea"+llaveRegistro).val());
     //crea un objeto javascript
     let datos = {
-        id: llaveRegistro,
-        brand: $("#Brand"+llaveRegistro).val(),
-        model: $("#Model"+llaveRegistro).val(),
-        category_id: $("#Category_id"+llaveRegistro).val(),
-        name: $("#Name"+llaveRegistro).val()
+        idClient: llaveRegistro,
+        name: $("#Name"+llaveRegistro).val(),
+        email: $("#Email"+llaveRegistro).val(),
+        age: $("#Age"+llaveRegistro).val()
     }
 
     //convierte el objeto javascript a json antes de agregarlo a los datos de la petición
@@ -168,7 +165,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "http://129.151.111.220:8080/api/Costume/update",
+            url: "http://129.151.111.220:8080/api/Client/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -210,39 +207,34 @@ function editarRegistro(llaveRegistro) {
 
 function validarEditar(llaveRegistro){
     //obtiene valores
-    let id = llaveRegistro;
-    let brand= $("#Brand"+llaveRegistro).val();
-    let model= $("#Model"+llaveRegistro).val();
-    let category_id= $("#Category_id"+llaveRegistro).val();
+    $("#Memail"+llaveRegistro).hide();
+    $("#Mname"+llaveRegistro).hide();
+    $("#Mage"+llaveRegistro).hide();
     let name= $("#Name"+llaveRegistro).val();
+    let email= $("#Email"+llaveRegistro).val();
+    let age= $("#Age"+llaveRegistro).val();
     let errores="";
     $("#mensajes").html("");
 
     //valida que los campos no sean vacios
-    if( validaesVacio(brand)) {
+    if( validaesVacio(name)) {
         errores="name vacio<br>";
         $("#mensajes").html(errores);
-        $("#mensajes").show(500);
+        $("#Mname"+llaveRegistro).show(500);
         $("#nameEdit").focus();
         return false;
-    }else if( validaesVacio(model)) {
+    }else if( validaesVacio(email)) {
         errores="brand vacio<br>";
         $("#mensajes").html(errores);
-        $("#mensajes").show(500);
+        $("#Memail"+llaveRegistro).show(500);
         $("#brandEdit").focus();
         return false;
-    }else if( validaesVacio(category_id)) {  
+    }else if( validaesVacio(age)) {  
         errores="model vacio<br>";
         $("#mensajes").html(errores);
-        $("#mensajes").show(500);
+        $("#Mage"+llaveRegistro).show(500);
         $("#modelEdit").focus();
         return false;
-    }else if( validaesVacio(name)) {  
-            errores="model vacio<br>";
-            $("#mensajes").html(errores);
-            $("#mensajes").show(500);
-            $("#modelEdit").focus();
-            return false;
     }else{
         $("#mensajes").html("");
         $("#mensajes").hide(500);
@@ -260,11 +252,11 @@ function validaesVacio(dato){
     e.preventDefault()
     console.log(ID);
     console.log("entro");
-    var messagetext = $('#Textarea').val();
+    var Clienttext = $('#Textarea').val();
 
-    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/costume/costume/", {
+    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client/", {
         id: 1,
-        messagetext: messagetext
+        Clienttext: Clienttext
     }, function (response) {
         console.log('success====:', response)
         //clearfield();

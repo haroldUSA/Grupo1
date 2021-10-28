@@ -5,60 +5,58 @@ $(document).ready(function (e) {
     var age = $('#Age').val();*/
 
 
-
-    $.getJSON("http://129.151.111.220:8080/api/Reservation/all", 
+    $.getJSON("http://129.151.111.220:8080/api/Category/all", 
     function (data) {
-        var client_data="";
+        var client_data=""; 
         $.each(data,function(key,value){
-        //$("#IDReservation").val(value.id);    
         client_data+='<tr>';
-      //  client_data+='<td>'+value.idReservation+'</td>';
-        client_data+='<td>'+value.startDate+'</td>';
-        client_data+='<td>'+value.devolutionDate+'</td>';
-        client_data+='<td>'+value.status+'</td>';
-        client_data+='<td>'+value.costume.name+'</td>';
-        client_data+='<td>'+value.client.idClient+'</td>';
-        client_data+='<td>'+value.client.name+'</td>';
-        client_data+='<td>'+value.client.email+'</td>'
-        if(value.score==null){
-            client_data+='<td>No Score</td>';
-            client_data+=`<td align="center"><button onclick="calificateReservation(${value.idReservation})" style="background-color:#224abe"
-        class="rectangular-circle border-6" id="scorebuttom${value.idReservation}"><a
-        class="nav-link collapsed" href="#" 
-        data-target="#collapsePages"><i
-            class="fas fa-fw fa-trash-alt"></i><span
-            style="color:white">Score</span></a></button>`
-        }else {
-            client_data+='<td>'+value.score.stars+'</td>';  
-            client_data+=`<td align="center">`         
-        }
-        client_data+=`
-        <button  style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Editbuttom${value.idReservation}"><a onclick="actualizar(${value.idReservation})"
+       // client_data+='<td>'+value.id+'</td>';
+        client_data+='<td>'+value.name+'</td>';
+        client_data+='<td>'+value.description+'</td>';
+        client_data+='<td>';
+        client_data+='<ol>';
+        $.each(value.costumes,function(key,value2){
+            client_data+='<li>'+value2.name+'</li>';
+            });
+        client_data+='</ol>';
+        client_data+='</td>';           
+        client_data+=`<td align="center"><button  style="background-color:#224abe"
+        class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"
-                data-target="#collapsePages${value.idReservation}" aria-expanded="true"
-                aria-controls="collapsePages${value.idReservation}"><i
+                data-target="#collapsePages${value.id}" aria-expanded="true"
+                aria-controls="collapsePages${value.id}"><i
                     class="fas fa-fw fa-edit"></i><span
                     style="color:white">Editar</span></a>
-            <div id="collapsePages${value.idReservation}" class="collapse"
+            <div id="collapsePages${value.id}" class="collapse"
                 aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white  collapse-inner rounded"
                     align="center">
                     <h6 class="collapse-header" style="color:#224abe">Options:
-                    </h6><a class="collapse-item"
-                        >Message</a>
+                    </h6>
+                    <a class="collapse-item"
+                        >Name:
+                    </a>
                     <div class="form-group"><label
-                            for="example"></label><textarea class="form-control"
-                            id="Textarea${value.idReservation}" rows="3"></textarea></div>
-                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.idReservation})"
+                            for="example"></label><input type="text" class="form-control form-control-user" id="Name${value.id}" placeholder="Name">
+                    <a id="Mname${value.id}" style="color: red;">this field cannot be blank!</a>  
+                    </div>         
+                    <a class="collapse-item"
+                            >Description:
+                        </a>
+                        <div class="form-group"><label
+                                for="example"></label><textarea class="form-control"
+                                id="Textarea${value.id}" rows="3" placeholder="Description"></textarea>
+                                <a id="Mdescription${value.id}" style="color: red;">this field cannot be blank!</a>              
+                    </div>      
+                    <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.id})"
                             class="btn btn-primary btn-user btn-block ">Update
-                            Message!</a></div>
+                            Category!</a></div>
                     <div class="collapse-divider"></div>
                 </div>
             </div>
         </button>
-        <button onclick="deleteMessage(${value.idReservation})" style="background-color:#224abe"
-        class="rectangular-circle border-6" id="Deletebuttom${value.idReservation}"><a
+        <button onclick="deleteCategory(${value.id})" style="background-color:#224abe"
+        class="rectangular-circle border-6" id="Deletebuttom${value.id}"><a
         class="nav-link collapsed" href="#" 
         data-target="#collapsePages"><i
             class="fas fa-fw fa-trash-alt"></i><span
@@ -95,21 +93,13 @@ $(document).ready(function (e) {
 
 function actualizar(llaveRegistro){
     $("#Deletebuttom"+llaveRegistro).toggle();
-
+    $("#Mdescription"+llaveRegistro).hide();
+    $("#Mname"+llaveRegistro).hide();
 }
 
-function calificateReservation(llaveRegistro){
-    $('#scorebuttom'+llaveRegistro).hide();
-    redireccionar(llaveRegistro);
-}
-
-function redireccionar(id) {
-    //console.log(id);
-    location.href = "/register_score.html?prodId="+id;
-}
-
-function deleteMessage(llaveRegistro){
+function deleteCategory(llaveRegistro){
     //crea un objeto javascript
+    console.log(llaveRegistro);
     let datos={
         id: llaveRegistro
     }
@@ -119,12 +109,12 @@ function deleteMessage(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Reservation",
+        url: "http://129.151.111.220:8080/api/Category/"+llaveRegistro,
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
         //si el metodo del servicio recibe datos, es necesario definir el parametro adicional
-        data : datosPeticion,
+      //  data : datosPeticion,
 
         // especifica el tipo de petición http: POST, GET, PUT, DELETE
         type: 'DELETE',
@@ -162,7 +152,8 @@ function editarRegistro(llaveRegistro) {
     //crea un objeto javascript
     let datos = {
         id: llaveRegistro,
-        messagetext: $("#Textarea"+llaveRegistro).val()
+        name: $("#Name"+llaveRegistro).val(),
+        description: $("#Textarea"+llaveRegistro).val()
     }
 
     //convierte el objeto javascript a json antes de agregarlo a los datos de la petición
@@ -171,7 +162,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "http://129.151.111.220:8080/api/Reservation/update",
+            url: "http://129.151.111.220:8080/api/Category/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -213,16 +204,24 @@ function editarRegistro(llaveRegistro) {
 
 function validarEditar(llaveRegistro){
     //obtiene valores
-    let id = llaveRegistro;
-    let messagetext = $("#Textarea"+llaveRegistro).val();
+    $("#Mdescription"+llaveRegistro).hide();
+    $("#Mname"+llaveRegistro).hide();
+    let name = $("#Name"+llaveRegistro).val();
+    let description = $("#Textarea"+llaveRegistro).val();
     let errores="";
+    console.log(llaveRegistro);
     $("#mensajes").html("");
-
     //valida que los campos no sean vacios
-    if( validaesVacio(messagetext)) {
+    if( validaesVacio(name)) {
         errores="messagetext vacio<br>";
         $("#mensajes").html(errores);
-        $("#mensajes").show(500);
+        $("#Mname"+llaveRegistro).show(500);
+        $("#nameEdit").focus();
+        return false;
+    }else if( validaesVacio(description)) {
+        errores="messagetext vacio<br>";
+        $("#mensajes").html(errores);
+        $("#Mdescription"+llaveRegistro).show(500);
         $("#nameEdit").focus();
         return false;
     }else{

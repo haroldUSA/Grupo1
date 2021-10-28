@@ -46,6 +46,7 @@ public class CostumeController {
     }
     
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deleteCostume(@PathVariable int id){
         return costumeService.deleteCostume(id);
     }
