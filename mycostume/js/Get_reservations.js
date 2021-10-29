@@ -285,9 +285,9 @@ function selectStatus(llaveRegistro,id) {
             if(llaveRegistro==1){
                statu="created";
             }else if(llaveRegistro==2){
-               statu="canceled";  
+               statu="cancelled";  
             }else {
-               statu="Finished";
+               statu="complete";
             }
            // $("#IDCostume").val(llaveRegistro);
         }else{

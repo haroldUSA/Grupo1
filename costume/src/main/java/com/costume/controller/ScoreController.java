@@ -54,4 +54,5 @@ public class ScoreController {
     public Score scoreUpdate(@RequestBody Score score){
         return scoreService.updateClient(score);
     }
+    
 }

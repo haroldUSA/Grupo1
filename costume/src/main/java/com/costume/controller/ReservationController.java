@@ -5,8 +5,13 @@
  */
 package com.costume.controller;
 
+import com.costume.model.ReportClient;
 import com.costume.model.Reservation;
+import com.costume.model.Status;
 import com.costume.service.ReservationService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,4 +61,19 @@ public class ReservationController {
     public Reservation reservationUpdate(@RequestBody Reservation reservation){
         return reservationService.updateReservation(reservation);
     }
+    @GetMapping("/report-status")
+    public Status getStatus(){
+        return reservationService.getStatus();
+    }
+    @GetMapping("/report-clients")
+    public List<ReportClient> getReportClient(){
+        return reservationService.getReportClient();
+    }
+    
+    @GetMapping("/report-dates/{startDate}/{devolutionDate}")
+    public List<Reservation> getReportdate(@PathVariable String startDate,@PathVariable String devolutionDate) throws ParseException{
+        Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+        Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(devolutionDate);
+        return reservationService.getReportDates(date1,date2);
+    }        
 }
