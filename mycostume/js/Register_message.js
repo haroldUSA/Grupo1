@@ -14,7 +14,7 @@ $(document).ready(function (e) {
     $('#IDCostume').hide();
     $('#IDnumber').hide();
 
-    $.getJSON("http://129.151.111.220:8080/api/Costume/all",
+    $.getJSON("http://129.151.118.167:8080/api/Costume/all",
         function (data) {
             var client_data = "";
             var select_data = "";
@@ -38,7 +38,7 @@ $(document).ready(function (e) {
             //clearfield();
         })
 
-    $.getJSON("http://129.151.111.220:8080/api/Client/all",
+    $.getJSON("http://129.151.118.167:8080/api/Client/all",
         function (data) {
             var client_data = "";
             var select_data = "";
@@ -63,7 +63,7 @@ $(document).ready(function (e) {
         })
 
     /* console.log("entro");
-     $.getJSON("http://129.151.111.220:8080/api/Category/all", 
+     $.getJSON("http://129.151.118.167:8080/api/Category/all", 
      function (data) {
          var client_data="";
          $.each(data,function(key,value){
@@ -123,7 +123,7 @@ $('#submitbtn').click(function (e) {
     if (validarEditar()) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "http://129.151.111.220:8080/api/Message/save",
+            url: "http://129.151.118.167:8080/api/Message/save",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)

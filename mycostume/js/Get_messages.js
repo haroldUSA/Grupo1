@@ -9,7 +9,7 @@ $(document).ready(function (e) {
     $('#IDCostume').hide();
     $('#IDnumber').hide();
 
-    $.getJSON("http://129.151.111.220:8080/api/Message/all", 
+    $.getJSON("http://129.151.118.167:8080/api/Message/all", 
     function (data) {
         var client_data="";
         $.each(data,function(key,value){
@@ -125,7 +125,7 @@ function actualizar(llaveRegistro){
     $('#Mcostume'+llaveRegistro).hide();
     $('#Mclient'+llaveRegistro).hide();
     if(est==0){
-    $.getJSON("http://129.151.111.220:8080/api/Costume/all", 
+    $.getJSON("http://129.151.118.167:8080/api/Costume/all", 
     function (data) {
         var client_data="";
         var select_data="";
@@ -149,7 +149,7 @@ function actualizar(llaveRegistro){
         //clearfield();
     })
 
-    $.getJSON("http://129.151.111.220:8080/api/Client/all", 
+    $.getJSON("http://129.151.118.167:8080/api/Client/all", 
     function (data) {
         var client_data="";
         var select_data="";
@@ -217,7 +217,7 @@ function deleteMessage(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Message",
+        url: "http://129.151.118.167:8080/api/Message",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -280,7 +280,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "http://129.151.111.220:8080/api/Message/update",
+            url: "http://129.151.118.167:8080/api/Message/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)

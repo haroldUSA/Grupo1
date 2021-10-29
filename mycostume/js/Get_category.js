@@ -5,7 +5,7 @@ $(document).ready(function (e) {
     var age = $('#Age').val();*/
 
 
-    $.getJSON("http://129.151.111.220:8080/api/Category/all", 
+    $.getJSON("http://129.151.118.167:8080/api/Category/all", 
     function (data) {
         var client_data=""; 
         $.each(data,function(key,value){
@@ -109,7 +109,7 @@ function deleteCategory(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Category/"+llaveRegistro,
+        url: "http://129.151.118.167:8080/api/Category/"+llaveRegistro,
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -162,7 +162,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "http://129.151.111.220:8080/api/Category/update",
+            url: "http://129.151.118.167:8080/api/Category/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)

@@ -68,6 +68,9 @@ public class CostumeService {
                 if (costume.getDescription()!= null){
                     costumeU.get().setDescription(costume.getDescription());
                 }
+                if (costume.getCategory()!= null){
+                    costumeU.get().setCategory(costume.getCategory());
+                }
             }
             return costumeRepository.save(costumeU.get());
         } 
