@@ -69,9 +69,6 @@ public class CategoryService {
                 if (category.getDescription()!= null){
                     categoryU.get().setDescription(category.getDescription());
                 }
-//                if (category.getCostumes()!= null){
-//                    categoryU.get().setCostumes(category.getCostumes());
-//                }
             }
             return categoryRepository.save(categoryU.get());
         } 

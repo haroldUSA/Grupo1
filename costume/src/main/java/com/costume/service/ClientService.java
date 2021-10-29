@@ -68,12 +68,6 @@ public class ClientService {
                 if (client.getAge()!= null){
                     clientU.get().setAge(client.getAge());
                 }
-//                if (client.getReservations()!= null){
-//                    clientU.get().setReservations(client.getReservations());
-//                }
-//                 if (client.getMessages()!= null){
-//                    clientU.get().setMessages(client.getMessages());
-//                }
             }
             return clientRepository.save(clientU.get());
         } 
