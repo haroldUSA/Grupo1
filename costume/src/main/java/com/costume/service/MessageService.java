@@ -58,8 +58,13 @@ public class MessageService {
                           
                 if (message.getMessageText()!= null){
                     messageU.get().setMessageText(message.getMessageText());
-            }
-                
+                }
+                if(message.getClient()!=null){
+                    messageU.get().setClient(message.getClient());
+                }
+                if(message.getCostume()!=null){
+                    messageU.get().setCostume(message.getCostume());
+                }               
             }
             return messageRepository.save(messageU.get());
         } 
