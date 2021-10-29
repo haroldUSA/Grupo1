@@ -317,12 +317,12 @@ function deleteReservation(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.118.167:8080/api/Reservation",
+        url: "http://129.151.118.167:8080/api/Reservation/"+llaveRegistro,
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
         //si el metodo del servicio recibe datos, es necesario definir el parametro adicional
-        data : datosPeticion,
+        //data : datosPeticion,
 
         // especifica el tipo de petición http: POST, GET, PUT, DELETE
         type: 'DELETE',
