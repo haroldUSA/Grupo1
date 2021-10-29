@@ -5,16 +5,21 @@ $(document).ready(function (e) {
     var age = $('#Age').val();*/
 
 
-
-    $.getJSON("http://129.151.118.167:8080/api/Admin/all", 
+    $.getJSON("http://129.151.111.220:8080/api/Category/all", 
     function (data) {
-        var client_data="";
+        var client_data=""; 
         $.each(data,function(key,value){
         client_data+='<tr>';
-        //client_data+='<td>'+value.id+'</td>';
+       // client_data+='<td>'+value.id+'</td>';
         client_data+='<td>'+value.name+'</td>';
-        client_data+='<td>'+value.email+'</td>';
-       // client_data+='<td>'+value.password+'</td>';
+        client_data+='<td>'+value.description+'</td>';
+        client_data+='<td>';
+        client_data+='<ol>';
+        $.each(value.costumes,function(key,value2){
+            client_data+='<li>'+value2.name+'</li>';
+            });
+        client_data+='</ol>';
+        client_data+='</td>';           
         client_data+=`<td align="center"><button  style="background-color:#224abe"
         class="rectangular-circle border-6" id="Editbuttom${value.id}"><a onclick="actualizar(${value.id})"
                 class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -29,35 +34,32 @@ $(document).ready(function (e) {
                     <h6 class="collapse-header" style="color:#224abe">Options:
                     </h6>
                     <a class="collapse-item"
-                        >Name
+                        >Name:
                     </a>
                     <div class="form-group"><label
                             for="example"></label><input type="text" class="form-control form-control-user" id="Name${value.id}" placeholder="Name">
-                    </div>                    
+                    <a id="Mname${value.id}" style="color: red;">this field cannot be blank!</a>  
+                    </div>         
                     <a class="collapse-item"
-                        >Email
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Email${value.id}" placeholder="Email">
-                    </div>
-                    <a class="collapse-item"
-                        >Age
-                    </a>
-                    <div class="form-group"><label
-                            for="example"></label><input type="text" class="form-control form-control-user" id="Age${value.id}" placeholder="Age">
-                    </div>
+                            >Description:
+                        </a>
+                        <div class="form-group"><label
+                                for="example"></label><textarea class="form-control"
+                                id="Textarea${value.id}" rows="3" placeholder="Description"></textarea>
+                                <a id="Mdescription${value.id}" style="color: red;">this field cannot be blank!</a>              
+                    </div>      
                     <div class="col-sm-6 mb-3 mb-sm-0"><a onclick="editarRegistro(${value.id})"
                             class="btn btn-primary btn-user btn-block ">Update
-                            client!</a></div>
+                            Category!</a></div>
                     <div class="collapse-divider"></div>
                 </div>
             </div>
         </button>
-        <button onclick="deleteMessage(${value.id})" style="background-color:#224abe"
+        <button onclick="deleteCategory(${value.id})" style="background-color:#224abe"
         class="rectangular-circle border-6" id="Deletebuttom${value.id}"><a
         class="nav-link collapsed" href="#" 
         data-target="#collapsePages"><i
-            class="fas fa-trash-alt"></i><span
+            class="fas fa-fw fa-trash-alt"></i><span
             style="color:white">Delete</span></a></button>
     </td>`
         client_data+='</tr>';
@@ -91,11 +93,13 @@ $(document).ready(function (e) {
 
 function actualizar(llaveRegistro){
     $("#Deletebuttom"+llaveRegistro).toggle();
-
+    $("#Mdescription"+llaveRegistro).hide();
+    $("#Mname"+llaveRegistro).hide();
 }
 
-function deleteMessage(llaveRegistro){
+function deleteCategory(llaveRegistro){
     //crea un objeto javascript
+    console.log(llaveRegistro);
     let datos={
         id: llaveRegistro
     }
@@ -105,12 +109,12 @@ function deleteMessage(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client",
+        url: "http://129.151.111.220:8080/api/Category/"+llaveRegistro,
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
         //si el metodo del servicio recibe datos, es necesario definir el parametro adicional
-        data : datosPeticion,
+      //  data : datosPeticion,
 
         // especifica el tipo de petición http: POST, GET, PUT, DELETE
         type: 'DELETE',
@@ -144,13 +148,12 @@ function deleteMessage(llaveRegistro){
 
 function editarRegistro(llaveRegistro) {
     console.log(llaveRegistro);
-    //console.log($("#Textarea"+llaveRegistro).val());
+    console.log($("#Textarea"+llaveRegistro).val());
     //crea un objeto javascript
     let datos = {
         id: llaveRegistro,
         name: $("#Name"+llaveRegistro).val(),
-        email: $("#Email"+llaveRegistro).val(),
-        age: $("#Age"+llaveRegistro).val()
+        description: $("#Textarea"+llaveRegistro).val()
     }
 
     //convierte el objeto javascript a json antes de agregarlo a los datos de la petición
@@ -159,7 +162,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client",
+            url: "http://129.151.111.220:8080/api/Category/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -201,39 +204,31 @@ function editarRegistro(llaveRegistro) {
 
 function validarEditar(llaveRegistro){
     //obtiene valores
-    let id = llaveRegistro;
-    let name= $("#Name"+llaveRegistro).val();
-    let email= $("#Email"+llaveRegistro).val();
-    let age= $("#Age"+llaveRegistro).val();
+    $("#Mdescription"+llaveRegistro).hide();
+    $("#Mname"+llaveRegistro).hide();
+    let name = $("#Name"+llaveRegistro).val();
+    let description = $("#Textarea"+llaveRegistro).val();
     let errores="";
+    console.log(llaveRegistro);
     $("#mensajes").html("");
-
     //valida que los campos no sean vacios
     if( validaesVacio(name)) {
-        errores="name vacio<br>";
+        errores="messagetext vacio<br>";
         $("#mensajes").html(errores);
-        $("#mensajes").show(500);
+        $("#Mname"+llaveRegistro).show(500);
         $("#nameEdit").focus();
         return false;
-    }else if( validaesVacio(email)) {
-        errores="brand vacio<br>";
+    }else if( validaesVacio(description)) {
+        errores="messagetext vacio<br>";
         $("#mensajes").html(errores);
-        $("#mensajes").show(500);
-        $("#brandEdit").focus();
-        return false;
-    }else if( validaesVacio(age)) {  
-        errores="model vacio<br>";
-        $("#mensajes").html(errores);
-        $("#mensajes").show(500);
-        $("#modelEdit").focus();
+        $("#Mdescription"+llaveRegistro).show(500);
+        $("#nameEdit").focus();
         return false;
     }else{
         $("#mensajes").html("");
         $("#mensajes").hide(500);
         return true;
     }
-
-    return true;
 }
 
 function validaesVacio(dato){
@@ -246,7 +241,7 @@ function validaesVacio(dato){
     console.log("entro");
     var messagetext = $('#Textarea').val();
 
-    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client/", {
+    $.put("https://g3abde25bedbc30-db202109241616.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/message/message/", {
         id: 1,
         messagetext: messagetext
     }, function (response) {

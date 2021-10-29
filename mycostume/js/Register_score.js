@@ -9,7 +9,7 @@ $(document).ready(function (e) {
     $('#IDReservation').hide();
 
    /* console.log("entro");
-    $.getJSON("http://129.151.118.167:8080/api/Category/all", 
+    $.getJSON("http://129.151.111.220:8080/api/Category/all", 
     function (data) {
         var client_data="";
         $.each(data,function(key,value){
@@ -82,7 +82,7 @@ $('#submitbtn').click(function (e) {
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.118.167:8080/api/Score/save",
+        url: "http://129.151.111.220:8080/api/Score/save",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)

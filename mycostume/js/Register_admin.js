@@ -1,5 +1,8 @@
 $(document).ready(function (e) {
-    $('#ID').hide(5);
+    $('#ID').hide();
+    $('#Mname').hide(5);
+    $('#Memail').hide(5);
+    $('#Mpassword').hide(5);
 });
 $('#submitbtn').click(function (e) {
     e.preventDefault()
@@ -20,10 +23,10 @@ $('#submitbtn').click(function (e) {
     }
    
     let datosPeticion = JSON.stringify(datos);
-
+    if (validarEditar()) {
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.118.167:8080/api/Admin/save",
+        url: "http://129.151.111.220:8080/api/Admin/save",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -61,6 +64,7 @@ $('#submitbtn').click(function (e) {
             $("#mensajes").hide(1000);
         }
     });
+    }
 
     function clearfield() {
      //   $("#ID").val("");
@@ -72,6 +76,54 @@ $('#submitbtn').click(function (e) {
     }
 });
 
+function validarEditar(){
+    $('#Mname').hide(5);
+    $('#Memail').hide(5);
+    $('#Mpassword').hide(5);
+    //obtiene valores
+    let firstname = $('#FirstName').val();
+    let secondname = $('#LastName').val();
+    let email = $('#InputEmail').val();
+    let password = $('#Password').val();
+    let errores="";
+    $("#mensajes").html("");
+
+    //valida que los campos no sean vacios
+    if(validaesVacio(firstname)) {
+        errores="messagetext vacio<br>";
+        $("#mensajes").html(errores);
+        $("#Mname").show(500);
+        $("#nameEdit").focus();
+        return false;
+    }else if(validaesVacio(secondname)) {
+        errores="messagetext vacio<br>";
+        $("#mensajes").html(errores);
+        $("#Mname").show(500);
+        $("#nameEdit").focus();
+        return false;
+    }else if(validaesVacio(email)) {
+        errores="messagetext vacio<br>";
+        $("#mensajes").html(errores);
+        $("#Memail").show(500);
+        $("#nameEdit").focus();
+        return false;
+    }else if(validaesVacio(password)) {
+        errores="messagetext vacio<br>";
+        $("#mensajes").html(errores);
+        $("#Mpassword").show(500);
+        $("#nameEdit").focus();
+        return false;
+    }else{
+        $("#mensajes").html("");
+        $("#mensajes").hide(500);
+        return true;
+    }
+}
+
+function validaesVacio(dato){
+    return !dato.trim().length;
+}
+
 function mensaje(){
     alert("Usuario creado exitosamente!!!")
 }
@@ -82,7 +134,7 @@ function redireccionar() {
     location.href = "/register_message.html?prodId="+id;
 }
 function getid(){
-    $.getJSON("http://129.151.118.167:8080/api/Client/all", 
+    $.getJSON("http://129.151.111.220:8080/api/Client/all", 
     function (data) {
         var ID=0;
         $.each(data,function(key,value){
