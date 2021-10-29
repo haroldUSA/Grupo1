@@ -58,6 +58,7 @@ public class MessageService {
                           
                 if (message.getMessageText()!= null){
                     messageU.get().setMessageText(message.getMessageText());
+<<<<<<< HEAD
                 }
                 if(message.getClient()!=null){
                     messageU.get().setClient(message.getClient());
@@ -65,6 +66,17 @@ public class MessageService {
                 if(message.getCostume()!=null){
                     messageU.get().setCostume(message.getCostume());
                 }               
+=======
+            }
+                if (message.getCostume()!=null) {
+                    messageU.get().setCostume(message.getCostume());
+                }
+                if (message.getClient()!=null) {
+                    messageU.get().setClient(message.getClient());
+                }
+                
+                
+>>>>>>> 6377d58495e4dbb2e03d5df4be0dbad3e8bfb152
             }
             return messageRepository.save(messageU.get());
         } 

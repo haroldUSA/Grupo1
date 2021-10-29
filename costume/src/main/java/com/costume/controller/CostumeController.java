@@ -28,7 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/Costume")
+<<<<<<< HEAD
 @CrossOrigin(origins = "*", methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
+=======
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
+>>>>>>> 6377d58495e4dbb2e03d5df4be0dbad3e8bfb152
 public class CostumeController {
     @Autowired
     

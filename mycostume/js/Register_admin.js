@@ -26,7 +26,7 @@ $('#submitbtn').click(function (e) {
     if (validarEditar()) {
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Admin/save",
+        url: "http://129.151.118.167:8080/api/Admin/save",
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -134,7 +134,7 @@ function redireccionar() {
     location.href = "/register_message.html?prodId="+id;
 }
 function getid(){
-    $.getJSON("http://129.151.111.220:8080/api/Client/all", 
+    $.getJSON("http://129.151.118.167:8080/api/Client/all", 
     function (data) {
         var ID=0;
         $.each(data,function(key,value){

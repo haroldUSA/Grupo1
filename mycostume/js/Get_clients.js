@@ -6,7 +6,7 @@ $(document).ready(function (e) {
 
 
 
-    $.getJSON("http://129.151.111.220:8080/api/Client/all", 
+    $.getJSON("http://129.151.118.167:8080/api/Client/all", 
     function (data) {
         var client_data="";
         $.each(data,function(key,value){
@@ -111,7 +111,7 @@ function deleteClient(llaveRegistro){
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Client/"+llaveRegistro,
+        url: "http://129.151.118.167:8080/api/Client/"+llaveRegistro,
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
@@ -165,7 +165,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "http://129.151.111.220:8080/api/Client/update",
+            url: "http://129.151.118.167:8080/api/Client/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)

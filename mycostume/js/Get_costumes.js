@@ -6,7 +6,7 @@ $(document).ready(function (e) {
     $('#IDnumber').hide();
     $('#IDCategory').hide();
 
-    $.getJSON("http://129.151.111.220:8080/api/Costume/all",
+    $.getJSON("http://129.151.118.167:8080/api/Costume/all",
         function (data) {
             var client_data = "";
             $.each(data, function (key, value) {
@@ -142,7 +142,7 @@ function actualizar(llaveRegistro) {
         autoclose: true,
     })
     if (est == 0) {
-        $.getJSON("http://129.151.111.220:8080/api/Category/all",
+        $.getJSON("http://129.151.118.167:8080/api/Category/all",
             function (data) {
                 var client_data = "";
                 var select_data = "";
@@ -196,12 +196,12 @@ function deleteMessage(llaveRegistro) {
 
     $.ajax({
         // la URL para la petición (url: "url al recurso o endpoint")
-        url: "http://129.151.111.220:8080/api/Costume",
+        url: "http://129.151.118.167:8080/api/Costume/"+llaveRegistro,
 
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
         //si el metodo del servicio recibe datos, es necesario definir el parametro adicional
-        data: datosPeticion,
+        //data: datosPeticion,
 
         // especifica el tipo de petición http: POST, GET, PUT, DELETE
         type: 'DELETE',
@@ -260,7 +260,7 @@ function editarRegistro(llaveRegistro) {
     if (validarEditar(llaveRegistro)) {
         $.ajax({
             // la URL para la petición (url: "url al recurso o endpoint")
-            url: "http://129.151.111.220:8080/api/Costume/update",
+            url: "http://129.151.118.167:8080/api/Costume/update",
 
             // la información a enviar
             // (también es posible utilizar una cadena de datos)

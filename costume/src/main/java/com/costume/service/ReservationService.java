@@ -70,6 +70,7 @@ public class ReservationService {
                 if (reservation.getStatus()!= null){
                     reservationU.get().setStatus(reservation.getStatus());
                 }
+<<<<<<< HEAD
                 if(reservation.getClient()!=null){
                     reservationU.get().setClient(reservation.getClient());
                 }
@@ -77,6 +78,17 @@ public class ReservationService {
                     reservationU.get().setCostume(reservation.getCostume());
                 }   
                
+=======
+                if (reservation.getClient()!= null){
+                    reservationU.get().setClient(reservation.getClient());
+                }
+                if (reservation.getCostume()!= null){
+                    reservationU.get().setCostume(reservation.getCostume());
+                }
+                if (reservation.getScore()!= null){
+                    reservationU.get().setScore(reservation.getScore());
+                }
+>>>>>>> 6377d58495e4dbb2e03d5df4be0dbad3e8bfb152
             }
             return reservationRepository.save(reservationU.get());
         } 
